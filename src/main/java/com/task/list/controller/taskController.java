@@ -35,6 +35,15 @@ public class taskController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.createNewTask(request));
 
+    }
+
+    /*
+    metodo para editar uma tarefa
+     */
+    @PutMapping(value = "{id}")
+    public ResponseEntity<taskResponse> updateTask(@PathVariable(value = "id") Long cdTask, @RequestBody taskRequest request) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.updateTask(request, cdTask));
 
     }
 

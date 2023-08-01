@@ -18,6 +18,8 @@ public class taskEntity {
 
     private int priority;
 
+
+
     public Long getCdId() {
         return cdId;
     }

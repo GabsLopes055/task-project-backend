@@ -6,10 +6,12 @@ import com.task.list.entity.taskEntity;
 import com.task.list.repository.taskRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class taskService {
@@ -23,7 +25,11 @@ public class taskService {
     * */
     public List<taskResponse> listAllTasks(){
 
-        List<taskEntity> tasks = repository.findAll();
+       Sort sort = Sort.by("priority").descending().and(
+                Sort.by("name").ascending()
+        );
+
+        List<taskEntity> tasks = repository.findAll(sort);
 
         List<taskResponse> taskList = new ArrayList<>();
         for (taskEntity list : tasks) {
@@ -51,6 +57,27 @@ public class taskService {
         repository.save(taskEntity);
 
         return taskResponse.taskDTO(taskEntity);
+
+    }
+
+    /*
+    metodo para editar uma tarefa
+     */
+    public taskResponse updateTask(@NotNull taskRequest request, Long cdTask) {
+
+        Optional<taskEntity> updateTask = Optional.of(repository.findById(cdTask).orElseThrow());
+
+        taskEntity task = updateTask.get();
+
+//        task.setCdId(request.getCdId());
+        task.setName(request.getName());
+        task.setDescription(request.getDescription());
+        task.setFinish(request.isFinish());
+        task.setPriority(request.getPriority());
+
+        repository.save(task);
+
+        return taskResponse.taskDTO(task);
 
     }
 
