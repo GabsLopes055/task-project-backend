@@ -81,4 +81,20 @@ public class taskService {
 
     }
 
+    /*
+    metodo para excluir uma tarefa realizada
+     */
+    public boolean deleteTask(Long cdTask) {
+
+        Optional<taskEntity> findTask = repository.findById(cdTask);
+
+        if(findTask.isPresent()) {
+            this.repository.deleteById(cdTask);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
