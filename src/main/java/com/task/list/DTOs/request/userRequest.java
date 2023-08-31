@@ -1,6 +1,6 @@
 package com.task.list.DTOs.request;
 
-public class UserRequest {
+public class userRequest {
 
     private Long cdUser;
 
