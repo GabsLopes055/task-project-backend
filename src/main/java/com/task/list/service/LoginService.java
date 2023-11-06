@@ -25,8 +25,8 @@ public class LoginService {
         if (findUser.isEmpty()) {
             return false;
         }
-        boolean login = encoder.matches(request.getPassword(),findUser.get().getPassword());
-        return login;
+        return encoder.matches(request.getPassword(),findUser.get().getPassword());
+
     }
 
 }

@@ -52,7 +52,7 @@ public class taskService {
         taskEntity.setCdId(request.getCdId());
         taskEntity.setName(request.getName());
         taskEntity.setDescription(request.getDescription());
-        taskEntity.setFinish(request.isFinish());
+        taskEntity.setFinish(false);
         taskEntity.setPriority(request.getPriority());
 
         repository.save(taskEntity);
@@ -71,10 +71,10 @@ public class taskService {
         taskEntity task = updateTask.get();
 
 //        task.setCdId(request.getCdId());
-        task.setName(request.getName());
-        task.setDescription(request.getDescription());
+        task.setName(task.getName());
+        task.setDescription(task.getDescription());
         task.setFinish(request.isFinish());
-        task.setPriority(request.getPriority());
+        task.setPriority(task.getPriority());
 
         repository.save(task);
 

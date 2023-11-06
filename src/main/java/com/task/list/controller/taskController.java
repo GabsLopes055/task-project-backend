@@ -51,6 +51,7 @@ public class taskController {
     /*/
     metodo para excluir uma tarefa já concluida
      */
+    @DeleteMapping(value = "{cdTask}")
     public ResponseEntity<?> deleteTask(@PathVariable(value = "cdTask") Long cdTask) {
         if(service.deleteTask(cdTask)) {
             return ResponseEntity.status(HttpStatus.OK).body("Tarefa Deletada");
