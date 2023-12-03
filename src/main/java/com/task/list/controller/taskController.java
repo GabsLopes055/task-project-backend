@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "task-api")
+@CrossOrigin(value = "*")
 public class taskController {
 
     @Autowired
@@ -25,6 +26,13 @@ public class taskController {
     public ResponseEntity<List<taskResponse>> listAllTasks(){
 
         return ResponseEntity.status(HttpStatus.OK).body(service.listAllTasks());
+
+    }
+
+    @GetMapping(value = {"/pending"})
+    public ResponseEntity<List<taskResponse>> listAllTasksPending(){
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.listTasksPending());
 
     }
 

@@ -42,6 +42,23 @@ public class taskService {
 
     }
 
+    /*Metodo para retornar todas as tarefas ainda não concluidas*/
+    public List<taskResponse> listTasksPending() {
+        Sort sort = Sort.by("priority").descending().and(
+                Sort.by("name").ascending()
+        );
+
+        List<taskEntity> tasks = repository.findAllByFinishFalse();
+
+        List<taskResponse> taskList = new ArrayList<>();
+        for (taskEntity list : tasks) {
+            taskResponse response = taskResponse.taskDTO(list);
+            taskList.add(response);
+        }
+
+        return taskList;
+    }
+
     /*
     /metodo para criar uma nova tarefa
      */
