@@ -29,10 +29,23 @@ public class taskController {
 
     }
 
+    /*
+    metodo para listar todas as tarefas pendentes
+    */
     @GetMapping(value = {"/pending"})
     public ResponseEntity<List<taskResponse>> listAllTasksPending(){
 
         return ResponseEntity.status(HttpStatus.OK).body(service.listTasksPending());
+
+    }
+
+    /*
+    metodo para listar todas as tarefas concluidas
+    */
+    @GetMapping(value = {"/finish"})
+    public ResponseEntity<List<taskResponse>> listAllTasksFinish(){
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.listTasksFinish());
 
     }
 

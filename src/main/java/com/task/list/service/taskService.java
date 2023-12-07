@@ -48,7 +48,24 @@ public class taskService {
                 Sort.by("name").ascending()
         );
 
-        List<taskEntity> tasks = repository.findAllByFinishFalse();
+        List<taskEntity> tasks = repository.findAllByFinishFalse(sort);
+
+        List<taskResponse> taskList = new ArrayList<>();
+        for (taskEntity list : tasks) {
+            taskResponse response = taskResponse.taskDTO(list);
+            taskList.add(response);
+        }
+
+        return taskList;
+    }
+
+    /*Metodo para retornar todas as tarefas concluidas*/
+    public List<taskResponse> listTasksFinish() {
+        Sort sort = Sort.by("priority").descending().and(
+                Sort.by("name").ascending()
+        );
+
+        List<taskEntity> tasks = repository.findAllByFinishTrue(sort);
 
         List<taskResponse> taskList = new ArrayList<>();
         for (taskEntity list : tasks) {

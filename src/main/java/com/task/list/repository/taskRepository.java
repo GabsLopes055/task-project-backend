@@ -2,6 +2,7 @@ package com.task.list.repository;
 
 import com.task.list.DTOs.response.taskResponse;
 import com.task.list.entity.taskEntity;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import java.util.List;
 public interface taskRepository extends JpaRepository<taskEntity, Long> {
 
 
-    List<taskEntity> findAllByFinishFalse();
+    List<taskEntity> findAllByFinishFalse(Sort sort);
+    List<taskEntity> findAllByFinishTrue(Sort sort);
 
 }
